@@ -6,6 +6,7 @@ axios.get("https://fridge-rest-api.herokuapp.com/elements")
         console.log(error);
     });
 
+const DEFAULT_BG_COLOR = "#e9a5bd";
 
 function retrieveElements() {
     axios.get("https://fridge-rest-api.herokuapp.com/elements")
@@ -17,7 +18,7 @@ function retrieveElements() {
 }
 
 function buildElementFromJSON(obj) {
-    createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj._id);
+    createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj.bgColor, obj._id);
 }
 
 retrieveElements();
@@ -147,7 +148,7 @@ function deleteInteractable(elm) {
   axios.delete("https://fridge-rest-api.herokuapp.com/elements/" + dbid);
 }
 
-function createInteractable(xpos, ypos, width, height, text, dbid) {
+function createInteractable(xpos, ypos, width, height, text, color, dbid) {
     var draggable = document.createElement("DIV")
 
     draggable.classList.add("resize-drag")
@@ -161,6 +162,7 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
     draggable.style.left = xpos
     draggable.setAttribute('dbid', dbid)
     draggable.setAttribute('oninput', "patchText(this)")
+    draggable.style.backgroundColor = color
 
     var deleteIcon = document.createElement("I")
     deleteIcon.setAttribute("class", "bi bi-trash")
@@ -190,6 +192,7 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
     inpt.textContent = text
     inpt.setAttribute("id", "textarea")
     inpt.style.padding = "5px"
+    inpt.style.backgroundColor = color;
 
     draggable.style.position = "absolute"
     draggable.style.top = ypos
@@ -212,11 +215,12 @@ function createInteractableRandom() {
             "y": randYpos,
             "width": "25%",
             "height": "20%",
+            "bgColor": DEFAULT_BG_COLOR,
             "value": ""
         })
         .then((response) => {
             var dbid = response.data._id;
-            createInteractable(randXpos, randYpos, "25%", "20%", "", dbid);
+            createInteractable(randXpos, randYpos, "25%", "20%", "", DEFAULT_BG_COLOR, dbid);
         })
         .catch((error) => {
             console.log(error);
