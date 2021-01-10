@@ -103,6 +103,16 @@ function createInteractable() {
 
     var inpt = document.createElement("TEXTAREA")
 
+    var body = document.body,
+        html = document.documentElement;
+
+    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+    var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+
+    draggable.style.position = "absolute"
+    draggable.style.top = getRandomInt(0, 1000) + "px"
+    draggable.style.left = getRandomInt(0, 1000) + "px"
+
     draggable.appendChild(inpt)
     draggable.appendChild(btn)
     document.body.appendChild(draggable)
