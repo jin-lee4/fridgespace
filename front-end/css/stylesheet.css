@@ -27,14 +27,9 @@ body {
 }
 
 #dropdownToolButton {
-  background-color: #353638;
+  background-color: #054482;
   width: 50px;
   opacity: 0.5;
-}
-
-.dropdown-menu {
-  background-color: transparent;
-  border: none;
 }
 
 .resize-drag {
@@ -42,7 +37,7 @@ body {
     min-height: 20%;
     margin: 1rem 0 0 1rem;
     position: absolute;
-    background-color:#29e;
+    background-color:rgb(233, 165, 189);
     color: white;
     border-radius: 0.75em;
     border: solid black 2px;
@@ -58,7 +53,7 @@ textarea {
     margin: 0;
     width: 90%;
     height: 80%;
-    background-color: #29e;
+    background-color:rgb(233, 165, 189);
     border: #29e;
     border-radius: 0.75em;
     resize: none;
