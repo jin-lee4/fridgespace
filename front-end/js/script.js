@@ -4,7 +4,7 @@ function retrieveElements() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('address')) {
-        var addr = urlParams.get('address'));
+        var addr = urlParams.get('address');
         console.log(addr);
         axios.get("https://fridge-rest-api.herokuapp.com/elements/" + addr)
             .then((response) => {
