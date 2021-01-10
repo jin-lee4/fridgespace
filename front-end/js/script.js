@@ -7,6 +7,7 @@ interact('.resize-drag')
       listeners: {
         move (event) {
           var target = event.target
+          var btn = target.children
           var x = (parseFloat(target.getAttribute('data-x')) || 0)
           var y = (parseFloat(target.getAttribute('data-y')) || 0)
 
@@ -23,7 +24,7 @@ interact('.resize-drag')
 
           target.setAttribute('data-x', x)
           target.setAttribute('data-y', y)
-          target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
+          target.children = btn
         }
       },
       modifiers: [
@@ -47,7 +48,7 @@ interact('.resize-drag')
         // keep the element within the area of it's parent
         modifiers: [
             interact.modifiers.restrictRect({
-                restriction: 'parent',
+                restriction: 'screen',
                 endOnly: true
             })
         ],
@@ -86,7 +87,7 @@ function deleteInteractable(elm) {
 
 function createInteractable() {
     var draggable = document.createElement("DIV")
-    draggable.classList.add("draggable")
+    draggable.classList.add("resize-drag")
 
     var btn = document.createElement("BUTTON")
     btn.setAttribute("onClick","deleteInteractable(this)")

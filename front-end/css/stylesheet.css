@@ -27,16 +27,15 @@ body {
 
 input {
     margin: 0;
-    width: 100%;
-    height: 100%;
+    height: 30px;
+    width: 90%;
     background-color: #29e;
     border: #29e;
     border-radius: 0.75em;
-
 }
 input:focus {
     outline: 0;
 }
 .drag-area {
-    height: 50%;
+    height: 100%;
 }
