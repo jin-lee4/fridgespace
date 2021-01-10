@@ -26,6 +26,17 @@ body {
   position: absolute;
 }
 
+#dropdownToolButton {
+  background-color: #353638;
+  width: 50px;
+  opacity: 0.5;
+}
+
+.dropdown-menu {
+  background-color: transparent;
+  border: none;
+}
+
 .resize-drag {
     width: 25%;
     min-height: 20%;
