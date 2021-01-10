@@ -108,8 +108,8 @@ window.dragMoveListener = dragMoveListener
 
 //deleting an element
 function deleteInteractable(elm) {
-  elm.parentElement.remove();
-  var dbid = elm.parentElement.getAttribute('dbid');
+  elm.remove();
+  var dbid = elm.getAttribute('dbid');
   axios.delete("https://fridge-rest-api.herokuapp.com/elements/" + dbid);
 }
 
@@ -129,7 +129,7 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
 
     var deleteIcon = document.createElement("I")
     deleteIcon.setAttribute("class", "bi bi-trash")
-    deleteIcon.setAttribute("onClick", "deleteInteractable(this)")
+    deleteIcon.setAttribute("onClick", "deleteInteractable(this.parentElement)")
     deleteIcon.style.padding = "2px"
     deleteIcon.style.left = "5px"
     deleteIcon.style.top = "2px"
@@ -137,14 +137,23 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
 
     var changeIcon = document.createElement("I")
     changeIcon.setAttribute("class", "bi bi-palette")
-    changeIcon.setAttribute("onClick", "changeBackgroundColor(this)")
+    changeIcon.setAttribute("onClick", "changeNoteColor(this.parentElement)")
     changeIcon.style.padding = "2px"
-    changeIcon.style.right ="5px"
+    changeIcon.style.right = "10px"
     changeIcon.style.top = "2px"
     changeIcon.style.position = "absolute"
 
+    var colorPicker = document.createElement("INPUT")
+    colorPicker.type = "color"
+    colorPicker.className = "noteColor"
+    colorPicker.style.padding = "2px"
+    colorPicker.style.right = "25px"
+    colorPicker.style.width = "20px"
+    colorPicker.style.position = "absolute"
+
     var inpt = document.createElement("TEXTAREA")
     inpt.textContent = text
+    inpt.setAttribute("id", "textarea")
     inpt.style.padding = "5px"
 
     draggable.style.position = "absolute"
@@ -154,13 +163,14 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
     draggable.appendChild(inpt)
     draggable.appendChild(deleteIcon)
     draggable.appendChild(changeIcon)
+    changeIcon.appendChild(colorPicker)
     document.body.appendChild(draggable)
 }
 
 function createInteractableRandom() {
     var randYpos = getRandomInt(50, getHeight() * 0.8) + "px"
     var randXpos = getRandomInt(0, getWidth() * 0.75) + "px"
-    axios.post("https://fridge-rest-api.herokuapp.com/elements", 
+    axios.post("https://fridge-rest-api.herokuapp.com/elements",
         {
             "type": "text",
             "x": randXpos,
@@ -214,4 +224,11 @@ function getWidth() {
 function changeBackgroundColor() {
   var color = document.getElementById('inputColorPicker').value
   document.body.style.backgroundColor = color;
+}
+
+function changeNoteColor(elm) {
+  var color = elm.getElementsByClassName('noteColor').item(0).value
+  var textarea = elm.childNodes[0]
+  elm.style.backgroundColor = color;
+  textarea.style.backgroundColor = color;
 }
