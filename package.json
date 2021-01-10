@@ -16,8 +16,5 @@
   "bugs": {
     "url": "https://github.com/matthewlee01/fridgespace/issues"
   },
-  "homepage": "https://github.com/matthewlee01/fridgespace#readme",
-  "dependencies": {
-    "axios": "^0.21.1"
-  }
+  "homepage": "https://github.com/matthewlee01/fridgespace#readme"
 }
