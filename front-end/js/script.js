@@ -173,8 +173,9 @@ function createInteractable(xpos, ypos, width, height, text, color, dbid) {
     deleteIcon.style.position = "absolute"
 
     var changeIcon = document.createElement("I")
+    changeIcon.setAttribute("clickCounter", "0")
     changeIcon.setAttribute("class", "bi bi-palette")
-    changeIcon.setAttribute("onClick", "changeNoteColor(this.parentElement)")
+    changeIcon.setAttribute("onClick", "changeNoteColor(this.parentElement, this)")
     changeIcon.style.padding = "2px"
     changeIcon.style.right = "10px"
     changeIcon.style.top = "2px"
@@ -265,13 +266,16 @@ function changeBackgroundColor() {
     document.body.style.backgroundColor = color;
 }
 
-var clickCounter = 0
-function changeNoteColor(elm) {
-    clickCounter++;
-    if (clickCounter>1) {
+function changeNoteColor(elm, button) {
+    console.log(button)
+    clickCounter = parseInt(button.getAttribute('clickcounter'))
+    if (clickCounter>0) {
         var color = elm.getElementsByClassName('noteColor').item(0).value
         var textarea = elm.childNodes[0]
         elm.style.backgroundColor = color;
         textarea.style.backgroundColor = color;
+
+        console.log("test")
     }
+    button.setAttribute('clickcounter',"1")
 }
