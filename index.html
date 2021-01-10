@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="front-end/css/stylesheet.css">
 
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <script src="front-end/js/script.js"></script>
 
@@ -16,14 +17,21 @@
 <body>
     <h1>Fridge Space</h1>
 
-    <button onClick="createInteractable()">
-        click here 2 add
-    </button>
+    <div class="toolbar">
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownToolButton" data-bs-toggle="dropdown" aria-expanded="false">
+        toolbar
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdownToolButton">
+        <li><button class="dropdown-item" onClick="createInteractable()">add note</button></li>
+        <li><button class="dropdown-item" onClick="changeBackgroundColor()">
+          <input type="color" id="inputColorPicker">
+          change background
+        </button></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+      </ul>
+</div>
 
-    <button onClick="changeBackgroundColor()">
-      <input type="color" id="inputColorPicker">
-      change background color
-    </button>
+
 
 
 </body>

@@ -12,6 +12,10 @@ body {
     z-index: 10;
 }
 
+.toolbar {
+
+}
+
 .resize-drag {
     width: 25%;
     min-height: 20%;
