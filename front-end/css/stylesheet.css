@@ -76,3 +76,23 @@ textarea:focus {
 .drag-area {
     height: 100%;
 }
+
+.submit {
+    width: 50px;
+    background-color: #e8d97b;
+    border: 1px solid gray;
+    color: gray;
+    padding: 4px 8px;
+    text-align: center;
+    font-size: 14px;
+    opacity: 0.6;
+    transition: 0.3s;
+    display: inline-block;
+    text-decoration:none;
+    border-radius: 4px;
+
+}
+
+.submit:hover {
+    opacity: 1;
+}

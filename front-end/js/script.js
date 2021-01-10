@@ -1,6 +1,7 @@
 const DEFAULT_BG_COLOR = "#e9a5bd";
 var address = null;
 var bgColorID = null;
+var targetAddress = null;
 
 function retrieveAddress() {
     const queryString = window.location.search;
@@ -21,9 +22,61 @@ function retrieveElements() {
             });    
 
     } else {
-        const toolButton = document.getElementById("dropdownToolButton");
-        toolButton.style.visibility='hidden';
+        setupLandingPage();
+        
+    }
+}
 
+function setupLandingPage() {
+    const toolButton = document.getElementById("dropdownToolButton");
+    toolButton.style.visibility='hidden';
+    const container = document.createElement("DIV");
+    container.style.display="flex";
+    container.style.height="100vh";
+    container.style.width="100%";
+    container.style.alignItems="center";
+    container.style.alignContent="center";
+    container.style.justifyContent="center";
+    container.style.flexDirection="column";
+
+    const inputBox = document.createElement("DIV");
+    inputBox.style.display="flex";
+    inputBox.style.alignItems="center";
+    inputBox.style.alignContent="center";
+    inputBox.justifyContent="center";
+
+    const textField = document.createElement("INPUT");
+    textField.setAttribute("type", "text");
+    textField.addEventListener('input', updateTargetAddress);
+    inputBox.appendChild(textField);
+
+    const submitButton = document.createElement("INPUT");
+    submitButton.setAttribute("type", "button");
+    submitButton.addEventListener('click', gotoTargetAddress);
+    submitButton.value = "go";
+    submitButton.className = "submit";
+
+    inputBox.appendChild(submitButton);
+
+    const infoText = document.createElement("P");
+    infoText.innerHTML = "find a space, then share the url!";
+    infoText.style.margin="0px";
+
+    container.appendChild(infoText);
+    container.appendChild(inputBox);
+    document.body.appendChild(container);
+
+    
+
+}
+
+function updateTargetAddress(e) {
+    targetAddress = e.target.value;
+}
+
+function gotoTargetAddress(e) {
+    if (targetAddress) {
+        window.location.href = "https://frij.space/?address=" + targetAddress;
     }
 }
 
