@@ -1,20 +1,34 @@
-// test axios
-axios.get("https://fridge-rest-api.herokuapp.com/elements")
-  .then((response) => {
-      console.log(response);
-  }, (error) => {
-      console.log(error);
-  });
-
 const DEFAULT_BG_COLOR = "#e9a5bd";
+var address = null;
 
+function retrieveAddress() {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    if (urlParams.has('address')) {
+        address = urlParams.get('address');
+    }
+}
 function retrieveElements() {
-  axios.get("https://fridge-rest-api.herokuapp.com/elements")
-      .then((response) => {
-          response.data.forEach(buildElementFromJSON)
-      }, (error) => {
-          console.log(error);
-      });
+    retrieveAddress();
+    if (address) {
+        console.log(address);
+        axios.get("https://fridge-rest-api.herokuapp.com/elements/" + address)
+            .then((response) => {
+                response.data.forEach(buildElementFromJSON)
+            }, (error) => {
+                console.log(error);
+            });    
+
+    } else {
+
+        axios.get("https://fridge-rest-api.herokuapp.com/elements")
+            .then((response) => {
+                response.data.forEach(buildElementFromJSON)
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
 }
 
 function buildElementFromJSON(obj) {
@@ -219,7 +233,8 @@ function createInteractableRandom() {
           "width": "25%",
           "height": "20%",
           "bgColor": DEFAULT_BG_COLOR,
-          "value": ""
+          "value": "",
+          "address": address
       })
       .then((response) => {
           var dbid = response.data._id;
