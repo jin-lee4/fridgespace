@@ -185,6 +185,7 @@ function createInteractable(xpos, ypos, width, height, text, color, dbid) {
   draggable.style.backgroundColor = color
 
   var deleteIcon = document.createElement("I")
+  deleteIcon.setAttribute("id", "delete")
   deleteIcon.setAttribute("class", "bi bi-trash")
   deleteIcon.setAttribute("onClick", "deleteInteractable(this.parentElement)")
   deleteIcon.style.padding = "2px"
@@ -193,6 +194,7 @@ function createInteractable(xpos, ypos, width, height, text, color, dbid) {
   deleteIcon.style.position = "absolute"
 
   var changeIcon = document.createElement("I")
+  changeIcon.setAttribute("id", "change")
   changeIcon.setAttribute("clickCounter", "0")
   changeIcon.setAttribute("class", "bi bi-palette")
   changeIcon.setAttribute("onClick", "changeNoteColor(this.parentElement, this)")
