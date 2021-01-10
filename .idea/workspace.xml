@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="cb20dd68-9093-4279-86e7-5e8bcdac9cf3" name="Default Changelist" comment="Fix &quot;add note&quot; bug">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/front-end/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/js/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +50,7 @@
       <workItem from="1610232398805" duration="1408000" />
       <workItem from="1610233813448" duration="2126000" />
       <workItem from="1610237488173" duration="11283000" />
+      <workItem from="1610260860458" duration="4066000" />
     </task>
     <task id="LOCAL-00001" summary="Added draggable object">
       <created>1610234913897</created>

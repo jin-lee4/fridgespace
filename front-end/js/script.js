@@ -125,6 +125,7 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
     draggable.style.width = width
     draggable.style.top = ypos
     draggable.style.left = xpos
+    draggable.setAttribute('dbid', dbid)
 
     var deleteIcon = document.createElement("I")
     deleteIcon.setAttribute("class", "bi bi-trash")
