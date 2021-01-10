@@ -107,11 +107,11 @@ function createInteractable() {
     var body = document.body,
         html = document.documentElement;
 
-    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ) * 0.75;
-    var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth ) - 100;
+    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ) * 0.8;
+    var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth ) * 0.75;
 
     draggable.style.position = "absolute"
-    draggable.style.top = getRandomInt(0, height) + "px"
+    draggable.style.top = getRandomInt(50, height) + "px"
     draggable.style.left = getRandomInt(0, width) + "px"
 
     draggable.appendChild(inpt)
