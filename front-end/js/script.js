@@ -261,9 +261,13 @@ function changeBackgroundColor() {
     document.body.style.backgroundColor = color;
 }
 
+var clickCounter = 0
 function changeNoteColor(elm) {
-  var color = elm.getElementsByClassName('noteColor').item(0).value
-  var textarea = elm.childNodes[0]
-  elm.style.backgroundColor = color;
-  textarea.style.backgroundColor = color;
+    clickCounter++;
+    if (clickCounter>1) {
+        var color = elm.getElementsByClassName('noteColor').item(0).value
+        var textarea = elm.childNodes[0]
+        elm.style.backgroundColor = color;
+        textarea.style.backgroundColor = color;
+    }
 }
