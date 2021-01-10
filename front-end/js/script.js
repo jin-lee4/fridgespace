@@ -1,26 +1,27 @@
-// test axios
-axios.get("https://fridge-rest-api.herokuapp.com/elements")
-  .then((response) => {
-      console.log(response);
-  }, (error) => {
-      console.log(error);
-  });
-
 const DEFAULT_BG_COLOR = "#e9a5bd";
 
 function retrieveElements() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('address')) {
-        console.log(urlParams.get('address'));
-    }
+        var addr = urlParams.get('address'));
+        console.log(addr);
+        axios.get("https://fridge-rest-api.herokuapp.com/elements/" + addr)
+            .then((response) => {
+                response.data.forEach(buildElementFromJSON)
+            }, (error) => {
+                console.log(error);
+            });    
 
-    axios.get("https://fridge-rest-api.herokuapp.com/elements")
-        .then((response) => {
-            response.data.forEach(buildElementFromJSON)
-        }, (error) => {
-            console.log(error);
-        });
+    } else {
+
+        axios.get("https://fridge-rest-api.herokuapp.com/elements")
+            .then((response) => {
+                response.data.forEach(buildElementFromJSON)
+            }, (error) => {
+                console.log(error);
+            });
+    }
 
 }
 
