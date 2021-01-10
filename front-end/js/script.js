@@ -124,22 +124,34 @@ function createInteractable(xpos, ypos, width, height, text) {
     draggable.style.top = ypos
     draggable.style.left = xpos
 
-    var btn = document.createElement("BUTTON")
-    btn.setAttribute("onClick","deleteInteractable(this)")
-    btn.innerText = "click here 2 delete"
-    btn.style.bottom = "5px"
-    btn.style.position = "center"
+    var deleteIcon = document.createElement("I")
+    deleteIcon.setAttribute("class", "bi bi-trash")
+    deleteIcon.setAttribute("onClick", "deleteInteractable(this)")
+    deleteIcon.style.padding = "2px"
+    deleteIcon.style.left = "5px"
+    deleteIcon.style.top = "2px"
+    deleteIcon.style.position = "absolute"
+
+    var changeIcon = document.createElement("I")
+    changeIcon.setAttribute("class", "bi bi-palette")
+    changeIcon.setAttribute("onClick", "changeBackgroundColor(this)")
+    changeIcon.style.padding = "2px"
+    changeIcon.style.right ="5px"
+    changeIcon.style.top = "2px"
+    changeIcon.style.position = "absolute"
 
 
     var inpt = document.createElement("TEXTAREA")
     inpt.textContent = text
+    inpt.style.padding = "5px"
 
     draggable.style.position = "absolute"
     draggable.style.top = ypos
     draggable.style.left = xpos
 
     draggable.appendChild(inpt)
-    draggable.appendChild(btn)
+    draggable.appendChild(deleteIcon)
+    draggable.appendChild(changeIcon)
     document.body.appendChild(draggable)
 }
 
