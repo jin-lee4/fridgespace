@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cb20dd68-9093-4279-86e7-5e8bcdac9cf3" name="Default Changelist" comment="Fixed resizing problems">
+    <list default="true" id="cb20dd68-9093-4279-86e7-5e8bcdac9cf3" name="Default Changelist" comment="added text area to resizable boxes instead of input elements">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/css/stylesheet.css" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/css/stylesheet.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/front-end/js/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/front-end/js/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +50,7 @@
       <updated>1610232394042</updated>
       <workItem from="1610232398805" duration="1408000" />
       <workItem from="1610233813448" duration="2126000" />
-      <workItem from="1610237488173" duration="10671000" />
+      <workItem from="1610237488173" duration="11283000" />
     </task>
     <task id="LOCAL-00001" summary="Added draggable object">
       <created>1610234913897</created>
@@ -74,7 +73,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610245379382</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="added text area to resizable boxes instead of input elements">
+      <created>1610248462040</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1610248462040</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -96,6 +102,7 @@
     <MESSAGE value="Added draggable object" />
     <MESSAGE value="Added &quot;add draggable object&quot; button" />
     <MESSAGE value="Fixed resizing problems" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed resizing problems" />
+    <MESSAGE value="added text area to resizable boxes instead of input elements" />
+    <option name="LAST_COMMIT_MESSAGE" value="added text area to resizable boxes instead of input elements" />
   </component>
 </project>
