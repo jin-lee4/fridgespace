@@ -41,7 +41,7 @@ function dragMoveListener (event) {
         target.style.transform =
             'translate(' + x + 'px, ' + y + 'px)'
 
-    // update the posiion attributes
+    // update the position attributes
     target.setAttribute('data-x', x)
     target.setAttribute('data-y', y)
 }
@@ -50,7 +50,21 @@ function dragMoveListener (event) {
 window.dragMoveListener = dragMoveListener
 
 //deleting an element
-function deleteInteractable() {
-  var elm = document.getElementById('drag-1');
-  elm.remove();
+function deleteInteractable(elm) {
+  elm.parentElement.remove();
+}
+
+function createInteractable() {
+    var draggable = document.createElement("DIV")
+    draggable.classList.add("draggable")
+
+    var btn = document.createElement("BUTTON")
+    btn.setAttribute("onClick","deleteInteractable(this)")
+    btn.innerText = "click here 2 delete"
+
+    var inpt = document.createElement("INPUT")
+
+    draggable.appendChild(inpt)
+    draggable.appendChild(btn)
+    document.body.appendChild(draggable)
 }

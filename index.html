@@ -16,11 +16,23 @@
 <body>
     <h1>Fridge Space</h1>
 
-    <div id="drag-1" class="draggable">
+    <div class="drag-area">
+    <div class="draggable">
         <input>
-        <button onClick = "deleteInteractable()">
+        <button onClick="deleteInteractable(this)">
           click here 2 delete
         </button>
     </div>
+
+    <div class="draggable">
+        <input>
+        <button onClick="deleteInteractable(this)">
+            click here 2 delete
+        </button>
+    </div>
+    </div>
+    <button onClick="createInteractable()">
+        Click here 2 add
+    </button>
 </body>
 </html>

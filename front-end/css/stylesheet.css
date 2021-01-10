@@ -1,5 +1,6 @@
 body {
-    text-align: center !important;
+    text-align: center;
+    height: 100%;
 }
 .draggable {
     width: 25%;
@@ -25,4 +26,7 @@ input {
 }
 input:focus {
     outline: 0;
+}
+.drag-area {
+    height: 50%;
 }
