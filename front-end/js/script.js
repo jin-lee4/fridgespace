@@ -21,15 +21,10 @@ function retrieveElements() {
             });    
 
     } else {
+        const toolButton = document.getElementById("dropdownToolButton");
+        toolButton.style.visibility='hidden';
 
-        axios.get("https://fridge-rest-api.herokuapp.com/elements")
-            .then((response) => {
-                response.data.forEach(buildElementFromJSON)
-            }, (error) => {
-                console.log(error);
-            });
     }
-
 }
 
 function buildElementFromJSON(obj) {
