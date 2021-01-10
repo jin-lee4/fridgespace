@@ -42,6 +42,8 @@ body {
     background-color: #29e;
     color: white;
     border-radius: 0.75em;
+    border-width: 3px;
+    border-color: black;
 
     touch-action: none;
     user-select: none;
