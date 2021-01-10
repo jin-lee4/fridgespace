@@ -86,31 +86,42 @@ function deleteInteractable(elm) {
   elm.parentElement.remove();
 }
 
-function createInteractable() {
-  var draggable = document.createElement("DIV")
-   draggable.classList.add("resize-drag")
-   draggable.style.display = "flex"
-   draggable.style.flexWrap = "wrap"
-   draggable.style.justifyContent = "center"
-   draggable.style.alignItems = "center"
-   draggable.style.height = "100px"
+function createInteractable(xpos, ypos, width, height, text) {
+    var draggable = document.createElement("DIV")
 
-   var btn = document.createElement("BUTTON")
-   btn.setAttribute("onClick","deleteInteractable(this)")
-   btn.innerText = "click here 2 delete"
-   btn.style.bottom = "5px"
-   btn.style.position = "center"
+    draggable.classList.add("resize-drag")
+    draggable.style.display = "flex"
+    draggable.style.flexWrap = "wrap"
+    draggable.style.justifyContent = "center"
+    draggable.style.alignItems = "center"
+    draggable.style.height = height
+    draggable.style.width = width
+    draggable.style.top = ypos
+    draggable.style.left = xpos
+
+    var btn = document.createElement("BUTTON")
+    btn.setAttribute("onClick","deleteInteractable(this)")
+    btn.innerText = "click here 2 delete"
+    btn.style.bottom = "5px"
+    btn.style.position = "center"
 
 
-   var inpt = document.createElement("TEXTAREA")
+    var inpt = document.createElement("TEXTAREA")
+    inpt.textContent = text
 
-   draggable.style.position = "absolute"
-   draggable.style.top = getRandomInt(50, getHeight() * 0.8) + "px"
-   draggable.style.left = getRandomInt(0, getWidth() * 0.75) + "px"
+    draggable.style.position = "absolute"
+    draggable.style.top = ypos
+    draggable.style.left = xpos
 
-   draggable.appendChild(inpt)
-   draggable.appendChild(btn)
-   document.body.appendChild(draggable)
+    draggable.appendChild(inpt)
+    draggable.appendChild(btn)
+    document.body.appendChild(draggable)
+}
+
+function createInteractableRandom() {
+    var randYpos = getRandomInt(50, getHeight() * 0.8) + "px"
+    var randXpos = getRandomInt(0, getWidth() * 0.75) + "px"
+    createInteractable(randXpos, randYpos, "25%", "20%", "")
 }
 
 /**
