@@ -41,7 +41,3 @@ textarea:focus {
 .drag-area {
     height: 100%;
 }
-div > button {
-    position: center;
-    bottom: 10px;
-}
