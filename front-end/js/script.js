@@ -156,10 +156,6 @@ function getWidth() {
         return width;
 }
 
-// function backgroundButtonClick() {
-//   document.body.style.backgroundImage = "url(https://picsum.photos/2080/1542?random)"
-// }
-
 function changeBackgroundColor() {
   var color = document.getElementById('inputColorPicker').value
   document.body.style.backgroundColor = color;
