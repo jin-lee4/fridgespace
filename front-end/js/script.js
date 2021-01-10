@@ -35,7 +35,7 @@ function buildElementFromJSON(obj) {
     if (obj.type == "text") {
         createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj.bgColor, obj._id);
     }
-    if (obj.type == "globalColor") {
+    if (obj.type == "globalcolor") {
         document.body.style.backgroundColor = obj.value;
     }
 
