@@ -18,7 +18,7 @@ function retrieveElements() {
 }
 
 function buildElementFromJSON(obj) {
-    createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value);
+    createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj._id);
 }
 
 retrieveElements();
@@ -109,9 +109,11 @@ window.dragMoveListener = dragMoveListener
 //deleting an element
 function deleteInteractable(elm) {
   elm.parentElement.remove();
+  var dbid = elm.parentElement.getAttribute('dbid');
+  axios.delete("https://fridge-rest-api.herokuapp.com/elements/" + dbid);
 }
 
-function createInteractable(xpos, ypos, width, height, text) {
+function createInteractable(xpos, ypos, width, height, text, dbid) {
     var draggable = document.createElement("DIV")
 
     draggable.classList.add("resize-drag")
@@ -123,6 +125,8 @@ function createInteractable(xpos, ypos, width, height, text) {
     draggable.style.width = width
     draggable.style.top = ypos
     draggable.style.left = xpos
+
+    draggable.setAttribute('dbid', dbid);
 
     var btn = document.createElement("BUTTON")
     btn.setAttribute("onClick","deleteInteractable(this)")
@@ -146,7 +150,23 @@ function createInteractable(xpos, ypos, width, height, text) {
 function createInteractableRandom() {
     var randYpos = getRandomInt(50, getHeight() * 0.8) + "px"
     var randXpos = getRandomInt(0, getWidth() * 0.75) + "px"
-    createInteractable(randXpos, randYpos, "25%", "20%", "")
+    axios.post("https://fridge-rest-api.herokuapp.com/elements", 
+        {
+            "type": "text",
+            "x": randXpos,
+            "y": randYpos,
+            "width": "25%",
+            "height": "20%",
+            "value": ""
+        })
+        .then((response) => {
+            var dbid = response.data._id;
+            createInteractable(randXpos, randYpos, "25%", "20%", "", dbid);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+
 }
 
 /**
