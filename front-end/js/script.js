@@ -88,11 +88,16 @@ function deleteInteractable(elm) {
 function createInteractable() {
     var draggable = document.createElement("DIV")
     draggable.classList.add("resize-drag")
+    draggable.style.display = "flex"
+    draggable.style.flexWrap = "wrap"
+    draggable.style.justifyContent = "center"
+    draggable.style.alignItems = "center"
     draggable.style.height = "100px"
 
     var btn = document.createElement("BUTTON")
     btn.setAttribute("onClick","deleteInteractable(this)")
     btn.innerText = "click here 2 delete"
+    btn.style.bottom = "5px"
     btn.style.position = "center"
 
 
