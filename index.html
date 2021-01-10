@@ -23,12 +23,17 @@
 
     <div class="toolbar">
       <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownToolButton" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="bi bi-tools"></i>
+        <i class="bi bi-list" style="font-size: 15px"></i>
       </button>
       <ul class="dropdown-menu" aria-labelledby="dropdownToolButton">
         <li><button class="dropdown-item" onClick="createInteractableRandom()">
-          <i class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="add note" style="font-size: 20px; padding-right: 20px"></i>
+          <i class="bi bi-pencil-square" data-bs-toggle="tooltip" data-bs-placement="top" title="new note" style="font-size: 20px; padding-right: 20px"></i>
+          new note
         </button></li>
+        <!-- <li><button class="dropdown-item" onClick="createChecklistRandom()">
+          <i class="bi bi-list-task" data-bs-toggle="tooltip" data-bs-placement="top" title="new list" style="font-size: 20px; padding-right: 20px"></i>
+          new list
+        </button></li> -->
         <li><button class="dropdown-item" onClick="changeBackgroundColor()">
             <i class="bi bi-palette" data-bs-toggle="tooltip" data-bs-placement="top" title="background color" style="font-size: 20px; padding-right: 20px"></i>
             <input type="color" id="inputColorPicker" style="width:75px">
