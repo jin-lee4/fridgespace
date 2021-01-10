@@ -1,20 +1,19 @@
-
 // test axios
 axios.get("https://fridge-rest-api.herokuapp.com/elements")
-  .then((response) => {
-      console.log(response);
-  }, (error) => {
-      console.log(error);
-  });
-
-
-function retrieveElements() {
-  axios.get("https://fridge-rest-api.herokuapp.com/elements")
     .then((response) => {
-        response.data.forEach(buildElementFromJSON)
+        console.log(response);
     }, (error) => {
         console.log(error);
     });
+
+
+function retrieveElements() {
+    axios.get("https://fridge-rest-api.herokuapp.com/elements")
+        .then((response) => {
+            response.data.forEach(buildElementFromJSON)
+        }, (error) => {
+            console.log(error);
+        });
 }
 
 function buildElementFromJSON(obj) {
@@ -23,49 +22,76 @@ function buildElementFromJSON(obj) {
 
 retrieveElements();
 
+function patchText(note) {
+    // first get dbid attribute, e.g.
+    var dbid = note.getAttribute("dbid")
+
+// send http request
+    axios.patch("https://fridge-rest-api.herokuapp.com/elements/" + dbid, {
+        // insert the values u wanna update here, e.g.
+        // "x": this.x
+        value: note.children.item(0).value
+
+    })
+.catch((error) => {
+        console.log(error);
+    });
+}
+
 // target elements with the "draggable" class
 interact('.resize-drag')
-  .resizable({
-      // resize from all edges and corners
-      edges: { left: true, right: true, bottom: true, top: true },
+    .resizable({
+        // resize from all edges and corners
+        edges: {left: true, right: true, bottom: true, top: true},
 
-      listeners: {
-        move (event) {
-          var target = event.target
-          var insideElements = target.children
-          var x = (parseFloat(target.getAttribute('data-x')) || 0)
-          var y = (parseFloat(target.getAttribute('data-y')) || 0)
+        listeners: {
+            move(event) {
+                var target = event.target
+                var insideElements = target.children
+                var x = (parseFloat(target.getAttribute('data-x')) || 0)
+                var y = (parseFloat(target.getAttribute('data-y')) || 0)
 
-          // update the element's style
-          target.style.width = event.rect.width + 'px'
-          target.style.height = event.rect.height + 'px'
+                // update the element's style
+                target.style.width = event.rect.width + 'px'
+                target.style.height = event.rect.height + 'px'
 
-          // translate when resizing from top or left edges
-          x += event.deltaRect.left
-          y += event.deltaRect.top
+                // translate when resizing from top or left edges
+                x += event.deltaRect.left
+                y += event.deltaRect.top
 
-          target.style.webkitTransform = target.style.transform =
-            'translate(' + x + 'px,' + y + 'px)'
+                target.style.webkitTransform = target.style.transform =
+                    'translate(' + x + 'px,' + y + 'px)'
 
-          target.setAttribute('data-x', x)
-          target.setAttribute('data-y', y)
-          target.children = insideElements
-        }
-      },
-      modifiers: [
-        // keep the edges inside the parent
-        interact.modifiers.restrictEdges({
-          outer: 'parent'
-        }),
+                target.setAttribute('data-x', x)
+                target.setAttribute('data-y', y)
+                target.children = insideElements
 
-        // minimum size
-        interact.modifiers.restrictSize({
-          min: { width: 160, height: 150 },
-          max: { width: 700, height: 700 }
-        })
-      ],
+                var dbid = target.getAttribute('dbid')
+                axios.patch("https://fridge-rest-api.herokuapp.com/elements/" + dbid, {
+                    // insert the values u wanna update here, e.g.
+                    // "x": this.x
+                    x: parseInt(target.style.left.substring(0,target.style.left.length-2)) + x + 'px',
+                    y: parseInt(target.style.top.substring(0,target.style.top.length-2)) + y + 'px',
+                    width: target.style.width,
+                    height: target.style.height
 
-      inertia: true
+                });
+            }
+        },
+        modifiers: [
+            // keep the edges inside the parent
+            interact.modifiers.restrictEdges({
+                outer: 'parent'
+            }),
+
+            // minimum size
+            interact.modifiers.restrictSize({
+                min: {width: 160, height: 150},
+                max: {width: 700, height: 700}
+            })
+        ],
+
+        inertia: true
     })
 
     .draggable({
@@ -87,7 +113,7 @@ interact('.resize-drag')
         }
     })
 
-function dragMoveListener (event) {
+function dragMoveListener(event) {
     var target = event.target
     // keep the dragged position in the data-x/data-y attributes
     var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
@@ -101,6 +127,14 @@ function dragMoveListener (event) {
     // update the position attributes
     target.setAttribute('data-x', x)
     target.setAttribute('data-y', y)
+
+    var dbid = target.getAttribute('dbid')
+    axios.patch("https://fridge-rest-api.herokuapp.com/elements/" + dbid, {
+        // insert the values u wanna update here, e.g.
+        // "x": this.x
+        x: parseInt(target.style.left.substring(0,target.style.left.length-2)) + x + 'px',
+        y: parseInt(target.style.top.substring(0,target.style.top.length-2)) + y + 'px',
+    });
 }
 
 // this function is used later in the resizing and gesture demos
@@ -126,6 +160,7 @@ function createInteractable(xpos, ypos, width, height, text, dbid) {
     draggable.style.top = ypos
     draggable.style.left = xpos
     draggable.setAttribute('dbid', dbid)
+    draggable.setAttribute('oninput', "patchText(this)")
 
     var deleteIcon = document.createElement("I")
     deleteIcon.setAttribute("class", "bi bi-trash")
@@ -209,7 +244,7 @@ function getHeight() {
     var body = document.body,
         html = document.documentElement;
 
-    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+    var height = Math.max(body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight);
     return height;
 }
 
@@ -217,13 +252,13 @@ function getWidth() {
     var body = document.body,
         html = document.documentElement;
 
-        var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
-        return width;
+    var width = Math.max(body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth);
+    return width;
 }
 
 function changeBackgroundColor() {
-  var color = document.getElementById('inputColorPicker').value
-  document.body.style.backgroundColor = color;
+    var color = document.getElementById('inputColorPicker').value
+    document.body.style.backgroundColor = color;
 }
 
 function changeNoteColor(elm) {
