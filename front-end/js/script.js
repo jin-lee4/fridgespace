@@ -103,16 +103,10 @@ function createInteractable() {
 
 
     var inpt = document.createElement("TEXTAREA")
-
-    var body = document.body,
-        html = document.documentElement;
-
-    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight ) * 0.8;
-    var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth ) * 0.75;
-
+    
     draggable.style.position = "absolute"
-    draggable.style.top = getRandomInt(50, height) + "px"
-    draggable.style.left = getRandomInt(0, width) + "px"
+    draggable.style.top = getRandomInt(50, getHeight() * 0.8) + "px"
+    draggable.style.left = getRandomInt(0, getWidth() * 0.75) + "px"
 
     draggable.appendChild(inpt)
     draggable.appendChild(btn)
@@ -130,4 +124,23 @@ function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+/**
+ * Returns the width / height of the body
+ */
+function getHeight() {
+    var body = document.body,
+        html = document.documentElement;
+
+    var height = Math.max( body.scrollHeight, body.offsetHeight, html.clientHeight, html.scrollHeight, html.offsetHeight );
+    return height;
+}
+
+function getWidth() {
+    var body = document.body,
+        html = document.documentElement;
+
+        var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
+        return width;
 }
