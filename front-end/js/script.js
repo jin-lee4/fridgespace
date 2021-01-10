@@ -296,7 +296,7 @@ function changeBackgroundColor() {
     } else {
         axios.post("https://fridge-rest-api.herokuapp.com/elements",
       {
-          "type": "bgcolor",
+          "type": "globalcolor",
           "x": "0",
           "y": "0",
           "width": "0",
