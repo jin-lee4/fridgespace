@@ -267,7 +267,6 @@ function changeBackgroundColor() {
 }
 
 function changeNoteColor(elm, button) {
-    console.log(button)
     clickCounter = parseInt(button.getAttribute('clickcounter'))
     if (clickCounter>0) {
         var color = elm.getElementsByClassName('noteColor').item(0).value
@@ -275,7 +274,14 @@ function changeNoteColor(elm, button) {
         elm.style.backgroundColor = color;
         textarea.style.backgroundColor = color;
 
-        console.log("test")
+        var dbid = elm.getAttribute("dbid");
+        axios.patch("https://fridge-rest-api.herokuapp.com/elements/" + dbid, {
+        // insert the values u wanna update here, e.g.
+        // "x": this.x
+            bgColor: color
+
+        })
+
     }
     button.setAttribute('clickcounter',"1")
 }
