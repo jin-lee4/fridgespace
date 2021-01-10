@@ -1,3 +1,15 @@
+
+// test axios
+axios.get("https://fridge-rest-api.herokuapp.com/elements")
+  .then((response) => {
+      console.log(response);
+  }, (error) => {
+      console.log(error);
+  });
+
+
+
+
 // target elements with the "draggable" class
 interact('.resize-drag')
   .resizable({
