@@ -86,14 +86,18 @@ function deleteInteractable(elm) {
   elm.parentElement.remove();
 }
 
-function createInteractable() {
+function createInteractable(xpos, ypos, width, height, text) {
     var draggable = document.createElement("DIV")
+
     draggable.classList.add("resize-drag")
     draggable.style.display = "flex"
     draggable.style.flexWrap = "wrap"
     draggable.style.justifyContent = "center"
     draggable.style.alignItems = "center"
-    draggable.style.height = "100px"
+    draggable.style.height = height
+    draggable.style.width = width
+    draggable.style.top = ypos
+    draggable.style.left = xpos
 
     var btn = document.createElement("BUTTON")
     btn.setAttribute("onClick","deleteInteractable(this)")
@@ -103,14 +107,21 @@ function createInteractable() {
 
 
     var inpt = document.createElement("TEXTAREA")
+    inpt.textContent = text
 
     draggable.style.position = "absolute"
-    draggable.style.top = getRandomInt(50, getHeight() * 0.8) + "px"
-    draggable.style.left = getRandomInt(0, getWidth() * 0.75) + "px"
+    draggable.style.top = ypos
+    draggable.style.left = xpos
 
     draggable.appendChild(inpt)
     draggable.appendChild(btn)
     document.body.appendChild(draggable)
+}
+
+function createInteractable() {
+    var randYpos = getRandomInt(50, getHeight() * 0.8) + "px"
+    var randXpos = getRandomInt(0, getWidth() * 0.75) + "px"
+    createInteractable(randXpos, randYpos, "25%", "20%", "")
 }
 
 /**
