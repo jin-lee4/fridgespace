@@ -39,11 +39,10 @@ body {
     min-height: 20%;
     margin: 1rem 0 0 1rem;
     position: absolute;
-    background-color: #29e;
+    background-color:#29e;
     color: white;
     border-radius: 0.75em;
-    border-width: 3px;
-    border-color: black;
+    border: solid black thin;
 
     touch-action: none;
     user-select: none;
