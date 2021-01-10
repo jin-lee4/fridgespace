@@ -111,8 +111,8 @@ function createInteractable() {
     var width = Math.max( body.scrollWidth, body.offsetWidth, html.clientWidth, html.scrollWidth, html.offsetWidth );
 
     draggable.style.position = "absolute"
-    draggable.style.top = getRandomInt(0, 1000) + "px"
-    draggable.style.left = getRandomInt(0, 1000) + "px"
+    draggable.style.top = getRandomInt(0, height) + "px"
+    draggable.style.left = getRandomInt(0, width) + "px"
 
     draggable.appendChild(inpt)
     draggable.appendChild(btn)
