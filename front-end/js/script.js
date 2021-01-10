@@ -8,7 +8,20 @@ axios.get("https://fridge-rest-api.herokuapp.com/elements")
   });
 
 
+function retrieveElements() {
+  axios.get("https://fridge-rest-api.herokuapp.com/elements")
+    .then((response) => {
+        response.data.forEach(buildElementFromJSON)
+    }, (error) => {
+        console.log(error);
+    });
+}
 
+function buildElementFromJSON(obj) {
+    createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value);
+}
+
+retrieveElements();
 
 // target elements with the "draggable" class
 interact('.resize-drag')
