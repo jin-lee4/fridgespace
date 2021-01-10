@@ -49,7 +49,7 @@ interact('.resize-drag')
         // keep the element within the area of it's parent
         modifiers: [
             interact.modifiers.restrictRect({
-                restriction: 'screen',
+                restriction: 'parent',
                 endOnly: true
             })
         ],
