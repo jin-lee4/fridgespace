@@ -118,7 +118,7 @@ function createInteractable(xpos, ypos, width, height, text) {
     document.body.appendChild(draggable)
 }
 
-function createInteractable() {
+function createInteractableRandom() {
     var randYpos = getRandomInt(50, getHeight() * 0.8) + "px"
     var randXpos = getRandomInt(0, getWidth() * 0.75) + "px"
     createInteractable(randXpos, randYpos, "25%", "20%", "")
