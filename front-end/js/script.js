@@ -1,5 +1,6 @@
 const DEFAULT_BG_COLOR = "#e9a5bd";
 var address = null;
+var bgColorID = null;
 
 function retrieveAddress() {
     const queryString = window.location.search;
@@ -36,6 +37,7 @@ function buildElementFromJSON(obj) {
         createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj.bgColor, obj._id);
     }
     if (obj.type == "globalcolor") {
+        bgColorID = obj._id;
         document.body.style.backgroundColor = obj.value;
     }
 
@@ -287,6 +289,27 @@ function getWidth() {
 function changeBackgroundColor() {
     var color = document.getElementById('inputColorPicker').value
     document.body.style.backgroundColor = color;
+    if(bgColorID) {
+        axios.patch("https://fridge-rest-api.herokuapp.com/elements/" + bgColorID, {
+            value: color
+        })
+    } else {
+        axios.post("https://fridge-rest-api.herokuapp.com/elements",
+      {
+          "type": "bgcolor",
+          "x": "0",
+          "y": "0",
+          "width": "0",
+          "height": "0",
+          "bgColor": "0",
+          "value": color,
+          "address": address
+      })
+      .then((response) => {
+          bgColorID = response.data._id;
+      })
+    }
+
 }
 
 function changeNoteColor(elm, button) {
