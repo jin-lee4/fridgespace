@@ -1,11 +1,18 @@
 body {
     text-align: center;
-    height: 100%;
+    position: fixed;
+    width: 100%;
+    min-height: 100%;
+    left: 0;
+    top: 0;
+    background: rgb(255, 255, 255);
+    z-index: 10;
 }
 .draggable {
     width: 25%;
     min-height: 6.5em;
     margin: 1rem 0 0 1rem;
+    position: absolute;
     background-color: #29e;
     color: white;
     border-radius: 0.75em;
