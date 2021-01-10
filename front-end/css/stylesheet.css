@@ -2,7 +2,10 @@ h1 {
   font-family: 'B612', sans-serif;
   font-size: 50px;
   color: #3873d1;
-  padding-top: 10px;
+  padding:5px;
+  left: 10px;
+  top: 10px;
+  position: absolute;
 }
 
 body {
@@ -12,25 +15,14 @@ body {
     min-height: 100%;
     left: 0;
     top: 0;
-    /* background: url(https://picsum.photos/2080/1542?random); */
-    /* background-position: center;
-    background-repeat: no-repeat; */
-    background-color: rgb(236, 217, 235);
+    background-color: rgb(240, 235, 204);
     z-index: 10;
-}
-
-.colorChange {
-  left: 10px;
-  top: 20px;
-  position: absolute;
-  visibility: visible;
-  padding: 5px;
 }
 
 .toolbar {
   padding: 5px;
   left: 10px;
-  top: 60px;
+  top: 80px;
   position: absolute;
 }
 
@@ -39,9 +31,10 @@ body {
     min-height: 20%;
     margin: 1rem 0 0 1rem;
     position: absolute;
-    background-color: #29e;
+    background-color:#29e;
     color: white;
     border-radius: 0.75em;
+    border: solid black thin;
 
     touch-action: none;
     user-select: none;
