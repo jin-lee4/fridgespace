@@ -32,7 +32,13 @@ function retrieveElements() {
 }
 
 function buildElementFromJSON(obj) {
-  createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj.bgColor, obj._id);
+    if (obj.type == "text") {
+        createInteractable(obj.x, obj.y, obj.width, obj.height, obj.value, obj.bgColor, obj._id);
+    }
+    if (obj.type == "globalColor") {
+        document.body.style.backgroundColor = obj.value;
+    }
+
 }
 
 retrieveElements();
