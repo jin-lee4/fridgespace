@@ -1,12 +1,18 @@
 const DEFAULT_BG_COLOR = "#e9a5bd";
+var address = null;
 
-function retrieveElements() {
+function retrieveAddress() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     if (urlParams.has('address')) {
-        var addr = urlParams.get('address');
-        console.log(addr);
-        axios.get("https://fridge-rest-api.herokuapp.com/elements/" + addr)
+        address = urlParams.get('address');
+    }
+}
+function retrieveElements() {
+    retrieveAddress();
+    if (address) {
+        console.log(address);
+        axios.get("https://fridge-rest-api.herokuapp.com/elements/" + address)
             .then((response) => {
                 response.data.forEach(buildElementFromJSON)
             }, (error) => {
@@ -225,7 +231,8 @@ function createInteractableRandom() {
           "width": "25%",
           "height": "20%",
           "bgColor": DEFAULT_BG_COLOR,
-          "value": ""
+          "value": "",
+          "address": address
       })
       .then((response) => {
           var dbid = response.data._id;
