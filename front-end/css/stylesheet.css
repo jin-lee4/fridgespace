@@ -11,7 +11,7 @@ body {
 
 .resize-drag {
     width: 25%;
-    min-height: 6.5em;
+    min-height: 12em;
     margin: 1rem 0 0 1rem;
     position: absolute;
     background-color: #29e;
@@ -25,17 +25,23 @@ body {
     box-sizing: border-box;
 }
 
-input {
+textarea {
     margin: 0;
-    height: 30px;
     width: 90%;
+    height: 80%;
     background-color: #29e;
     border: #29e;
     border-radius: 0.75em;
+    resize: none;
+
 }
-input:focus {
+textarea:focus {
     outline: 0;
 }
 .drag-area {
     height: 100%;
+}
+div > button {
+    position: center;
+    bottom: 10px;
 }

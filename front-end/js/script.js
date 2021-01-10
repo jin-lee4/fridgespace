@@ -7,7 +7,7 @@ interact('.resize-drag')
       listeners: {
         move (event) {
           var target = event.target
-          var btn = target.children
+          var insideElements = target.children
           var x = (parseFloat(target.getAttribute('data-x')) || 0)
           var y = (parseFloat(target.getAttribute('data-y')) || 0)
 
@@ -24,7 +24,7 @@ interact('.resize-drag')
 
           target.setAttribute('data-x', x)
           target.setAttribute('data-y', y)
-          target.children = btn
+          target.children = insideElements
         }
       },
       modifiers: [
@@ -35,7 +35,7 @@ interact('.resize-drag')
 
         // minimum size
         interact.modifiers.restrictSize({
-          min: { width: 100, height: 50 }
+          min: { width: 100, height: 150 }
         })
       ],
 
@@ -88,12 +88,15 @@ function deleteInteractable(elm) {
 function createInteractable() {
     var draggable = document.createElement("DIV")
     draggable.classList.add("resize-drag")
+    draggable.style.height = "100px"
 
     var btn = document.createElement("BUTTON")
     btn.setAttribute("onClick","deleteInteractable(this)")
     btn.innerText = "click here 2 delete"
+    btn.style.position = "center"
 
-    var inpt = document.createElement("INPUT")
+
+    var inpt = document.createElement("TEXTAREA")
 
     draggable.appendChild(inpt)
     draggable.appendChild(btn)
